@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">checkpoint2</a> &gt; <a href="index.source.html" class="el_package">entity</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">package entity;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;books&quot;)
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable=false)
+    private String title;
+
+    @Column(nullable=false, unique=true)
+    private String isbn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;author_id&quot;)  // FK
+    private Author author;
+
+<span class="fc" id="L23">    public Book() {}</span>
+
+    // Getters/Setters requeridos pelo seu mapper e pelos helpers do Author
+<span class="nc" id="L26">    public Long getId() { return id; }</span>
+<span class="nc" id="L27">    public void setId(Long id) { this.id = id; }</span>
+
+<span class="nc" id="L29">    public String getTitle() { return title; }</span>
+<span class="nc" id="L30">    public void setTitle(String title) { this.title = title; }</span>
+
+<span class="nc" id="L32">    public String getIsbn() { return isbn; }</span>
+<span class="nc" id="L33">    public void setIsbn(String isbn) { this.isbn = isbn; }</span>
+
+<span class="nc" id="L35">    public Author getAuthor() { return author; }</span>
+<span class="nc" id="L36">    public void setAuthor(Author author) { this.author = author; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

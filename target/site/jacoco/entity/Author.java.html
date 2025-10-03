@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Author.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">checkpoint2</a> &gt; <a href="index.source.html" class="el_package">entity</a> &gt; <span class="el_source">Author.java</span></div><h1>Author.java</h1><pre class="source lang-java linenums">package entity;
+
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = &quot;authors&quot;)
+public class Author {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable=false)
+    private String name;
+
+    @Column(nullable=false, unique=true)
+    private String email;
+
+<span class="pc" id="L21">    @OneToMany(mappedBy = &quot;author&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</span>
+    private Set&lt;Book&gt; books = new HashSet&lt;&gt;();
+
+    // ✅ exigido pelo JPA
+<span class="fc" id="L25">    public Author() {}</span>
+
+    // ✅ usado pelos seus testes
+<span class="fc" id="L28">    public Author(String name, String email) {</span>
+<span class="fc" id="L29">        this.name = name;</span>
+<span class="fc" id="L30">        this.email = email;</span>
+<span class="fc" id="L31">    }</span>
+
+    // (Opcional, caso algum teste use 3 args)
+<span class="nc" id="L34">    public Author(Long id, String name, String email) {</span>
+<span class="nc" id="L35">        this.id = id;</span>
+<span class="nc" id="L36">        this.name = name;</span>
+<span class="nc" id="L37">        this.email = email;</span>
+<span class="nc" id="L38">    }</span>
+
+    // getters/setters...
+<span class="fc" id="L41">    public Long getId() { return id; }</span>
+<span class="fc" id="L42">    public void setId(Long id) { this.id = id; }</span>
+
+<span class="fc" id="L44">    public String getName() { return name; }</span>
+<span class="fc" id="L45">    public void setName(String name) { this.name = name; }</span>
+
+<span class="fc" id="L47">    public String getEmail() { return email; }</span>
+<span class="fc" id="L48">    public void setEmail(String email) { this.email = email; }</span>
+
+<span class="nc" id="L50">    public Set&lt;Book&gt; getBooks() { return books; }</span>
+<span class="nc" id="L51">    public void setBooks(Set&lt;Book&gt; books) { this.books = books; }</span>
+
+    public void addBook(Book book) {
+<span class="nc" id="L54">        books.add(book);</span>
+<span class="nc" id="L55">        book.setAuthor(this);</span>
+<span class="nc" id="L56">    }</span>
+
+    public void removeBook(Book book) {
+<span class="nc" id="L59">        books.remove(book);</span>
+<span class="nc" id="L60">        book.setAuthor(null);</span>
+<span class="nc" id="L61">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

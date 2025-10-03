@@ -1,0 +1,3 @@
+controller\AuthorControllerIntegrationTest.class
+mapper\AuthorMapperImplTest.class
+service\AuthorServiceImplTest.class
