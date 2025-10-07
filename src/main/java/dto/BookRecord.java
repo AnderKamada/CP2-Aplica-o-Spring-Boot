@@ -1,10 +1,13 @@
 package dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record BookRecord(
         Long id,
-        String title,
-        String isbn,
-        Long authorId
+        @NotBlank String title,
+        @NotBlank String isbn,
+        @NotNull  Long authorId
 ) {
     // Validação customizada
     public BookRecord {

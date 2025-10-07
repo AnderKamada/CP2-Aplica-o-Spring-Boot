@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-checkpoint2,exception,GlobalExceptionHandler,85,28,0,0,14,7,2,2,2,2
+checkpoint2,exception,GlobalExceptionHandler,122,29,0,0,28,6,7,2,7,2
 checkpoint2,exception,ResourceNotFoundException,0,4,0,0,0,1,0,1,0,1
 checkpoint2,app,Checkpoint2Application,5,3,0,0,2,1,1,1,1,1
 checkpoint2,controller,AuthorController,8,47,0,0,2,13,1,6,1,6
-checkpoint2,controller,BookController,28,6,0,0,6,3,5,1,5,1
+checkpoint2,controller,BookController,37,6,0,0,8,3,5,1,5,1
 checkpoint2,service.impl,BookServiceImpl,151,12,6,0,28,5,12,1,9,1
 checkpoint2,service,AuthorServiceImpl,32,105,0,2,6,25,3,8,3,7
 checkpoint2,mapper,AuthorMapperImpl,0,39,0,4,0,14,0,5,0,3

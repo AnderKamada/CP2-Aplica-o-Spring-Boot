@@ -2,13 +2,13 @@
 
 import dto.AuthorRecord;
 import dto.BookRecord;
-import service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import service.AuthorService;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping(&quot;/authors&quot;)
@@ -20,66 +20,47 @@ public class AuthorController {
 <span class="fc" id="L20">        this.authorService = authorService;</span>
 <span class="fc" id="L21">    }</span>
 
-    /**
-     * POST /authors - Cria um novo autor
-     * @return 201 Created com o autor criado
-     */
+    /** POST /authors - Cria um novo autor (201) */
     @PostMapping
-    public ResponseEntity&lt;AuthorRecord&gt; create(@RequestBody AuthorRecord authorRecord) {
-<span class="fc" id="L29">        AuthorRecord created = authorService.create(authorRecord);</span>
-<span class="fc" id="L30">        return ResponseEntity.status(HttpStatus.CREATED).body(created);</span>
+    public ResponseEntity&lt;AuthorRecord&gt; create(@Valid @RequestBody AuthorRecord authorRecord) {
+<span class="fc" id="L26">        AuthorRecord created = authorService.create(authorRecord);</span>
+<span class="fc" id="L27">        return ResponseEntity.status(HttpStatus.CREATED).body(created);</span>
     }
 
-    /**
-     * GET /authors - Lista todos os autores
-     * @return 200 OK com lista de autores
-     */
+    /** GET /authors - Lista todos os autores (200) */
     @GetMapping
     public ResponseEntity&lt;List&lt;AuthorRecord&gt;&gt; findAll() {
-<span class="fc" id="L39">        List&lt;AuthorRecord&gt; authors = authorService.findAll();</span>
-<span class="fc" id="L40">        return ResponseEntity.ok(authors);</span>
+<span class="fc" id="L33">        List&lt;AuthorRecord&gt; authors = authorService.findAll();</span>
+<span class="fc" id="L34">        return ResponseEntity.ok(authors);</span>
     }
 
-    /**
-     * GET /authors/{id} - Busca autor por ID
-     * @return 200 OK ou 404 Not Found
-     */
+    /** GET /authors/{id} - Busca autor por ID (200/404) */
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;AuthorRecord&gt; findById(@PathVariable Long id) {
-<span class="fc" id="L49">        AuthorRecord author = authorService.findById(id);</span>
-<span class="fc" id="L50">        return ResponseEntity.ok(author);</span>
+<span class="fc" id="L40">        AuthorRecord author = authorService.findById(id);</span>
+<span class="fc" id="L41">        return ResponseEntity.ok(author);</span>
     }
 
-    /**
-     * PUT /authors/{id} - Atualiza um autor
-     * @return 200 OK ou 404 Not Found
-     */
+    /** PUT /authors/{id} - Atualiza um autor (200/404) */
     @PutMapping(&quot;/{id}&quot;)
-    public ResponseEntity&lt;AuthorRecord&gt; update(
-            @PathVariable Long id,
-            @RequestBody AuthorRecord authorRecord) {
-<span class="fc" id="L61">        AuthorRecord updated = authorService.update(id, authorRecord);</span>
-<span class="fc" id="L62">        return ResponseEntity.ok(updated);</span>
+    public ResponseEntity&lt;AuthorRecord&gt; update(@PathVariable Long id,
+                                               @Valid @RequestBody AuthorRecord authorRecord) {
+<span class="fc" id="L48">        AuthorRecord updated = authorService.update(id, authorRecord);</span>
+<span class="fc" id="L49">        return ResponseEntity.ok(updated);</span>
     }
 
-    /**
-     * DELETE /authors/{id} - Deleta um autor
-     * @return 204 No Content ou 404 Not Found
-     */
+    /** DELETE /authors/{id} - Deleta um autor (204/404) */
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; delete(@PathVariable Long id) {
-<span class="fc" id="L71">        authorService.delete(id);</span>
-<span class="fc" id="L72">        return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L55">        authorService.delete(id);</span>
+<span class="fc" id="L56">        return ResponseEntity.noContent().build();</span>
     }
 
-    /**
-     * GET /authors/{id}/books - Lista livros de um autor
-     * @return 200 OK com lista de livros
-     */
+    /** GET /authors/{id}/books - Lista livros de um autor (200) */
     @GetMapping(&quot;/{id}/books&quot;)
     public ResponseEntity&lt;List&lt;BookRecord&gt;&gt; findBooksByAuthor(@PathVariable Long id) {
-<span class="nc" id="L81">        List&lt;BookRecord&gt; books = authorService.findBooksByAuthorId(id);</span>
-<span class="nc" id="L82">        return ResponseEntity.ok(books);</span>
+<span class="nc" id="L62">        List&lt;BookRecord&gt; books = authorService.findBooksByAuthorId(id);</span>
+<span class="nc" id="L63">        return ResponseEntity.ok(books);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
