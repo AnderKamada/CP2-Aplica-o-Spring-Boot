@@ -22,7 +22,7 @@ public class Book {
 
     public Book() {}
 
-    // Getters/Setters requeridos pelo seu mapper e pelos helpers do Author
+    // Getters/Setters requeridos pelo mapper e helpers do Author
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

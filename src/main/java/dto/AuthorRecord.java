@@ -8,7 +8,7 @@ public record AuthorRecord(
         @NotBlank String name,
         @Email @NotBlank String email
 ) {
-    // Validação customizada no construtor compacto (opcional)
+    // Validação customizada no construtor compacto
     public AuthorRecord {
         if (name != null && name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be blank");

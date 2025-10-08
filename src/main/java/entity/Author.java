@@ -21,16 +21,16 @@ public class Author {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Book> books = new HashSet<>();
 
-    // ✅ exigido pelo JPA
+    //  exigido pelo JPA
     public Author() {}
 
-    // ✅ usado pelos seus testes
+    //  usado pelos testes
     public Author(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    // (Opcional, caso algum teste use 3 args)
+    // (caso algum teste use 3 args)
     public Author(Long id, String name, String email) {
         this.id = id;
         this.name = name;
